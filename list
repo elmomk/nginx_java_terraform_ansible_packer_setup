@@ -1,0 +1,8 @@
+infra/ansible-packer-terraform/packer/template.json
+infra/ansible-packer-terraform/terraform_rds/main.tf
+infra/ansible-packer-terraform/terraform/outputs.tf
+infra/ansible-packer-terraform/terraform/main.tf
+infra/ansible-packer-terraform/terraform_s3_backend/main.tf
+infra/ansible-packer-terraform/terraform/terraform.tf
+infra/ansible-packer-terraform/terraform_rds/terraform.tf
+

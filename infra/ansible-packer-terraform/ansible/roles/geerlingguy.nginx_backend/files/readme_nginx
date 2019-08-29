@@ -1,0 +1,7 @@
+Install Howto
+Download latest nginx-release rpm from
+http://nginx.org/packages/centos/7/noarch/RPMS/
+Install nginx-release rpm:
+# rpm -Uvh nginx-release*rpm
+Install nginx rpm package:
+# yum install nginx

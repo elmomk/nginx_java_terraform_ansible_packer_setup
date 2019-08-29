@@ -1,0 +1,4 @@
+provisioner "local-exec" {
+	command = "sleep 60; cd ../ansible && ansible-playbook -i'${aws_instance.ciis.private_ip},' laravel_setup.yml --vault-password-file=/home/gitlab-runner/.ansible_vault"
+	}
+

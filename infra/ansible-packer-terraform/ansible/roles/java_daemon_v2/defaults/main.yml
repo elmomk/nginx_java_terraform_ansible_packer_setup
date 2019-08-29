@@ -1,0 +1,14 @@
+---
+## defaults file for java_daemon
+# name_of_user: java     # default root: user and group within java_service.j2
+#
+## should all have the same name
+# systemd_service: /etc/systemd/system/swag.service # default is /etc/systemd/quantum.service
+#
+## java_daemon.j2 template
+# name_of_service: swag                # default is quantum
+############################################################
+# java_memory: -Xmx1024m               # default is -Xmx1024m
+# java_profile: default,dev            # default is default,dev
+# path_to_jar: /vagrant/               # default is /opt/z-bin
+# jar: api-server.jar                  # default is system-server.jar

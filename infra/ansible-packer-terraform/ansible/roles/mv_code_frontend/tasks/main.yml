@@ -1,0 +1,21 @@
+---
+# tasks file for mv_code
+#- name: copy files to nginx folder
+#  unarchive:
+#          src: frontend-dist.tar.gz
+#          dest: /usr/share/nginx/html
+#          owner: nginx
+#          group: nginx
+- name: make folder V6
+  file:
+      path: /usr/share/nginx/html/V6
+      state: directory
+      mode: 0755
+      owner: nginx
+      group: nginx
+
+      #- name: mv dist/* V6
+      #  shell: mv /usr/share/nginx/html/dist/* /usr/share/nginx/html/V6 && rm -rf /usr/share/nginx/html/dist
+
+
+          #notify: start nginx

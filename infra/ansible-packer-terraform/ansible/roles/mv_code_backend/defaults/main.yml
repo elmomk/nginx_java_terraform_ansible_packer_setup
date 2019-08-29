@@ -1,0 +1,4 @@
+---
+# defaults file for mv_code
+user: "centos"
+path_for_jar: "/opt/z-bin/apps"

@@ -1,0 +1,14 @@
+[Unit]
+Description= {{ name_of_service | default('quantum') }}.service starts {{ jar | default('system-server.jar') }}  with java
+After=network.target
+
+[Service]
+WorkingDirectory={{ path_to_jar | default('/opt/z-bin/apps') }}
+User={{ name_of_user | default('root') }}
+Group={{ name_of_user | default('root') }}
+SyslogIdentifier={{ name_of_service | default('quantum') }}
+ExecStart=/usr/bin/env /bin/java {{ java_memory | default('-Xmx512m') }} -Dspring.profiles.active={{ java_profile | default('default,dev') }} -jar {{ jar | default('system-server.jar') }} -Djava.util.logging.manager=log4j -server
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

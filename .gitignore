@@ -1,0 +1,4 @@
+*.retry
+*secret.tf
+*.ansible_vault
+*.vagrant

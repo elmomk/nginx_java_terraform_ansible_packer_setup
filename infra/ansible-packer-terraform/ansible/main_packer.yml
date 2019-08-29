@@ -1,0 +1,22 @@
+---
+- name: base image frontend and backend on one server
+  hosts: all
+  become: true
+  roles:
+      #- quantum_user
+          - geerlingguy.java
+          - geerlingguy.nginx_backend # frontend has been added as well
+            #- mv_code_backend # use jenkins or put the .jar in the files folder
+          - api_server    # setup .jar daemon aka swagger.service
+          - system_server # setup .jar daemon aka quantum.service
+          - mv_code_frontend # for mv code use jenkins, this role mkdir V6
+          - monitorix
+
+  tasks:
+      - name: Set httpd_can_network_connect flag on and keep it persistent across reboots for proxy
+        seboolean:
+            name: httpd_can_network_connect
+            state: yes
+            persistent: yes
+      - name: run restore context to reload selinux
+        shell: restorecon -Rv /usr/share/nginx

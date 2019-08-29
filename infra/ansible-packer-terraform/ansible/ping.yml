@@ -1,0 +1,10 @@
+---
+- name: Install java and nginx for backend server
+  hosts: all
+  tasks:
+      - action: ping
+
+      - name: look up date
+        shell: "timedatectl"
+
+

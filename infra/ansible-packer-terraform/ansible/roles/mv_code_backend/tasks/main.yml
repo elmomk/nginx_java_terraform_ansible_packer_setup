@@ -1,0 +1,18 @@
+---
+# tasks file for mv_code
+- name: make opt z-bin directory
+  file:
+      path: /opt/z-bin/apps
+      state: directory
+      recurse: yes
+      owner: "{{ user }}" 
+      group: "{{ user }}" 
+      
+- name: copy files to home folder 
+  copy:
+          src: system-server.jar
+          dest: "{{ path_for_jar }}"
+          owner: "{{ user }}" 
+          group: "{{ user }}" 
+          backup: yes
+

@@ -1,0 +1,30 @@
+---
+- name: Install java and nginx for backend server
+  hosts: all
+  become: true
+  roles:
+          - quantum_user
+          - geerlingguy.java
+          - geerlingguy.nginx_backend
+          - api_server    # setup .jar daemon aka swagger.service
+          - system_server # setup .jar daemon aka quantum.service
+          - monitorix
+            #- mv_code_backend # use jenkins
+
+
+- name: install nginx for frontend server
+  hosts: all
+  become: true
+  roles:
+          - quantum_user
+          - geerlingguy.nginx_frontend
+          - monitorix
+            #- mv_code_frontend # use jenkins
+  tasks:
+      - name: Set httpd_can_network_connect flag on and keep it persistent across reboots for proxy
+        seboolean:
+            name: httpd_can_network_connect
+            state: yes
+            persistent: yes
+      - name: run restore context to reload selinux
+        shell: restorecon -Rv /usr/share/nginx

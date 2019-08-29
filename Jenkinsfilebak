@@ -1,0 +1,20 @@
+### todo
+node {
+    stage('Source') {
+            git credentialsId: 'mo',
+            url: 'https://gitserver/sysadmin/repo.git'
+        }
+    stage('test') {
+        sh './jenkins_script.sh'
+    }
+    stage('play') {
+        ansiColor('xterm') {
+            ansiblePlaybook( 
+            extras: '--check', 
+            inventory: 'hosts', 
+            playbook: 'ping.yml',
+            credentialsId: 'quantum-aws-qa',
+            colorized: true)
+        }
+    }
+    }

@@ -1,0 +1,7 @@
+---
+# tasks file for quantum_user
+- name: useradd 
+  user:
+          name: quantum
+          shell: /sbin/nologin
+          create_home: no

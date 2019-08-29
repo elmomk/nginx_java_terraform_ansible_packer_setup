@@ -1,0 +1,28 @@
+{
+  "variables": {
+    "aws_region": "ap-northeast-1",
+    "aws_ami_image": "ami-045f38c93733dd48d",
+    "aws_instance_type": "t2.micro",
+    "image_version" : "0.4.1"
+  },
+
+
+ "builders": [
+     {
+    "type": "amazon-ebs",
+    "region": "ap-northeast-1",
+    "source_ami": "ami-045f38c93733dd48d",
+    "instance_type": "t2.micro",
+    "ssh_username": "centos",
+    "ami_name": "packer-centos-mo_is_awesome-{{timestamp}}"
+       }
+   ],
+ 
+  "provisioners": [
+    {
+      "type": "ansible",
+      "extra_arguments": ["--vault-password-file","/home/centos/.ansible_vault"],
+      "playbook_file": "../ansible/laravel_nodejs.yml"
+    }
+  ]
+}

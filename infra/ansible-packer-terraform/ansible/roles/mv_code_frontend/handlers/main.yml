@@ -1,0 +1,4 @@
+---
+# handlers file for mv_code
+- name: start nginx
+  service: name=nginx state=started enabled=yes

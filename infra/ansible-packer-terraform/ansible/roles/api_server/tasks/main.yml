@@ -1,0 +1,16 @@
+---
+# tasks file for java_daemon
+- name: copy java_service.j2 to /etc/systemd/system/ "{{ name_of_service | default('swagger')}}"
+  template:
+      src: java_service.j2
+      dest: "{{ systemd_service | default('/etc/systemd/system/swagger.service')}}"
+      owner: root
+      group: root
+      mode: 0644
+
+- name: start java.service
+  systemd:
+      daemon_reload: yes
+      name: "{{ name_of_service | default('swagger') }}"
+      state: restarted
+      enabled: true

@@ -1,0 +1,17 @@
+---
+# tasks file for java_daemon
+- name: copy java_service.j2 to /etc/systemd/system/ "{{ name_of_service | default('quantum')}}"
+  template:
+      src: java_service.j2
+      dest: "{{ systemd_service | default('/etc/systemd/system/quantum.service')}}"
+      owner: "{{ user | default('root') }}"
+      group: "{{ user | default('root') }}"
+      mode: 0644
+
+
+- name: start java.service
+  systemd:
+      daemon_reload: true
+      name: "{{ name_of_service  }}"
+      state: restarted
+      enabled: true

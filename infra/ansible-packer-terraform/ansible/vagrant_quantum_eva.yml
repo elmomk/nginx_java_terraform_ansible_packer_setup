@@ -1,0 +1,6 @@
+---
+- name: setup nginx
+  hosts: vagrant_quantum
+  become: true
+  roles:
+          - geerlingguy.nginx_backend

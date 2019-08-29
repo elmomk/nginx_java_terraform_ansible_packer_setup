@@ -1,0 +1,25 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+VAGRANTFILE_API_VERSION = "2"
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+config.ssh.insert_key = false
+#config.vm.provider :virtualbox do |vb|
+#vb.customize ["modifyvm", :id, "--memory", "256"]
+#end
+# node 1
+config.vm.define "quantum" do |quantum|
+quantum.vm.hostname = "quantum.dev"
+quantum.vm.box = "geerlingguy/centos7"
+quantum.vm.network :private_network, ip: "192.168.60.201"
+end
+#config.vm.define "backend" do |backend|
+#backend.vm.hostname = "backend.dev"
+#backend.vm.box = "geerlingguy/centos7"
+#backend.vm.network :private_network, ip: "192.168.60.202"
+#end
+#config.vm.synced_folder "code/", "/var/www/html"
+config.vm.provision "ansible" do |ansible|
+  ansible.verbose = "v"
+  ansible.playbook = "main_vagrant.yml"
+end
+end

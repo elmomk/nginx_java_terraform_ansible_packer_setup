@@ -1,0 +1,25 @@
+---
+# tasks file for monitorix
+- name: install epel-release
+  yum:
+      name: epel-release
+      state: present
+
+- name: install monitorix
+  yum:
+      name: monitorix
+      state: latest
+
+- name:
+  template:
+      src: monitorix.conf.j2
+      dest: /etc/monitorix/monitorix.conf
+      owner: root
+      group: root
+      mode: 0644
+
+- name: enable and start monitorix
+  systemd:
+      name: monitorix
+      state: started
+      enabled: yes

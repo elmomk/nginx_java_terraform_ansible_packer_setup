@@ -1,0 +1,14 @@
+---
+# defaults file for java_daemon
+# name_of_user: quantum                    # default root: user and group within java_service.j2
+
+#### should all have the same name
+# systemd_service: /etc/systemd/system/swagger.service # default is /etc/systemd/system/swagger.service
+
+### java_daemon.j2 template
+# name_of_service: swagger                  # default is swagger
+###########################################################
+java_memory: -Xmx1024m                      # default is -Xmx512m
+# java_profile: default,dev                 # default is default,dev
+# path_to_jar: /vagrant                     # default is /opt/z-bin/apps
+# jar: system-server.jar                    # default is api-server.jar
